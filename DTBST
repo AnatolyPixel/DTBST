@@ -1,0 +1,38 @@
+// Класс для управления CRM-системой
+class CRMSystem {
+private:
+    Database db;
+
+public:
+    // Функция для добавления нового клиента
+    void add_client(std::string name, std::string email, std::string phone) {
+        db.add_client(name, email, phone);
+    }
+
+    // Функция для добавления новой сделки
+    void add_deal(std::string title, double price, std::string status) {
+        db.add_deal(title, price, status);
+    }
+
+    // Функция для вывода информации о клиентах
+    void print_clients() {
+        db.print_clients();
+    }
+
+    // Функция для вывода информации о сделках
+    void print_deals() {
+        db.print_deals();
+    }
+
+    // Функция для изменения статуса сделки
+    void update_deal_status(std::string title, std::string status) {
+        for (auto& deal : db.deals) {
+            if (deal.title == title) {
+                deal.status = status;
+                std::cout << "Deal status updated!" << std::endl;
+                return;
+            }
+        }
+        std::cout << "Deal not found!" << std::endl;
+    }
+};
